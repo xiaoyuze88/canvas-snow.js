@@ -5,11 +5,11 @@
  */
 
 ;(function(factory) {
-    if (typeof exports == "object" && typeof module == "object") // CommonJS
+    if (typeof exports == "object" && typeof module == "object")
         module.exports = factory();
-    else if (typeof define == "function" && define.amd) // AMD
+    else if (typeof define == "function" && define.amd)
         return define([], factory);
-    else // Plain browser env
+    else
         this.Snow = factory();
 })(function() {
 
