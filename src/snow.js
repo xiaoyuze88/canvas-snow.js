@@ -80,7 +80,7 @@
         this.canvas.width = this.width;
         this.canvas.height = this.height;
 
-        // 雪点属性
+        // Initilize all the snow blocks with random width/height/radius/destination
         for (var i = 0, l = this.num; i < l; i++) {
             this.snows.push({
                 x: Math.random() * this.width,
@@ -91,12 +91,18 @@
         }
     }
 
+    // call for rAF loop
     snow.prototype.start = function() {
         this.cancel = false;
+
+        // _draw function return a closure of the drawing function.
         var func = _draw.call(this);
+
+        // call for rAF
         this.rAF = requestAnimationFrame(func);
     }
 
+    // kill the timer and the snows that left on canvas
     snow.prototype.stop = function() {
         this.cancel = true;
         cancelAnimationFrame(this.raf);
