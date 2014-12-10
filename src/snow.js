@@ -60,7 +60,7 @@
             canvas = document.querySelector(this.canvas);
         } 
         else if (this.selector) {
-            var container = document.querySelector(this.selector);
+            container = document.querySelector(this.selector);
             
             if (!container) {
                 throw new Error("Can't find container with selector " + this.selector);
