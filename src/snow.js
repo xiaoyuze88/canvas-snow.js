@@ -46,7 +46,6 @@
         if (!(this.selector || this.canvas) || !this.height || !this.width) return false;
 
         this.snows = [];
-
         this.rAF;
         this.cancel = false;
 
@@ -59,8 +58,10 @@
 
         if (this.canvas) {
             canvas = document.querySelector(this.canvas);
-        } else if (this.selector) {
+        } 
+        else if (this.selector) {
             var container = document.querySelector(this.selector);
+            
             if (!container) {
                 throw new Error("Can't find container with selector " + this.selector);
             }
@@ -118,7 +119,6 @@
         return (function _inner() {
 
             this.ctx.clearRect(0, 0, this.width, this.height);
-
             this.ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
             this.ctx.beginPath();
 
@@ -127,6 +127,7 @@
                 this.ctx.moveTo(position.x, position.y);
                 this.ctx.arc(position.x, position.y, position.r, 0, Math.PI * 2, true);
             }
+
             this.ctx.fill();
             update.call(this);
 
@@ -139,6 +140,7 @@
                     position2.x += Math.sin(angle) * 2;
 
                     if (position2.x > this.width + 5 || position2.x < -5 || position2.y > this.height) {
+                        
                         if (i % 3 > 0) {
                             this.snows[i] = {
                                 x: Math.random() * this.width,
@@ -146,7 +148,9 @@
                                 r: position2.r,
                                 d: position2.d
                             };
-                        } else {
+                        } 
+                        else {
+                            
                             if (Math.sin(angle) > 0) {
                                 this.snows[i] = {
                                     x: -5,
@@ -154,7 +158,8 @@
                                     r: position2.r,
                                     d: position2.d
                                 };
-                            } else {
+                            } 
+                            else {
                                 this.snows[i] = {
                                     x: this.width + 5,
                                     y: Math.random() * this.height,
@@ -165,6 +170,7 @@
                         }
                     }
                 }
+                
                 if (!this.cancel) {
                     requestAnimationFrame(_inner.bind(this));
                 }
@@ -173,6 +179,7 @@
     }
     
     // polyfill for requestAnimationFrame
+    // Modified from http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
     ;(function() {
         var prefix = ['ms', 'moz', 'webkit', 'o'];
         for (var i = 0, l = prefix.length; i < l && !window.requestAnimationFrame; i++) {
